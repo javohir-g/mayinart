@@ -24,7 +24,8 @@ if (!serveBin) {
 }
 
 const useListenFlag = process.platform !== 'win32';
-const args = ['-s', buildDir];
+// Build the argument list: place options first, then the directory as the last positional argument.
+const args = ['-s'];
 if (useListenFlag) {
   // Bind explicitly to all interfaces on non-Windows (Render requires a network binding)
   args.push('-l', `tcp://0.0.0.0:${port}`);
@@ -32,5 +33,8 @@ if (useListenFlag) {
   // On Windows, use -p <port> to avoid DNS lookup issues
   args.push('-p', String(port));
 }
+// Finally, add the directory to serve as the last argument
+args.push(buildDir);
+
 const child = spawn(process.execPath, [serveBin, ...args], { stdio: 'inherit' });
 child.on('exit', code => process.exit(code));
