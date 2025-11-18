@@ -36,5 +36,21 @@ if (useListenFlag) {
 // Finally, add the directory to serve as the last argument
 args.push(buildDir);
 
+const fs = require('fs');
+console.log('DEBUG: starting serve with:');
+console.log('  cwd:', process.cwd());
+console.log('  serveBin:', serveBin);
+console.log('  args:', args.join(' '));
+if (!fs.existsSync(buildDir)) {
+  console.error('DEBUG: build directory does not exist:', buildDir);
+} else {
+  try {
+    const files = fs.readdirSync(buildDir);
+    console.log('DEBUG: build directory files:', files.slice(0, 20));
+  } catch (e) {
+    console.error('DEBUG: error reading build dir:', e && e.message);
+  }
+}
+
 const child = spawn(process.execPath, [serveBin, ...args], { stdio: 'inherit' });
 child.on('exit', code => process.exit(code));
