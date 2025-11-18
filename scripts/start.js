@@ -22,5 +22,13 @@ if (!serveBin) {
   process.exit(1);
 }
 
-const child = spawn(process.execPath, [serveBin, '-s', 'dist', '-l', `tcp:${port}`], { stdio: 'inherit' });
+const useListenFlag = process.platform !== 'win32';
+const args = ['-s', 'dist'];
+if (useListenFlag) {
+  args.push('-l', `tcp:${port}`);
+} else {
+  // On Windows, use -p <port> to avoid DNS lookup issues
+  args.push('-p', String(port));
+}
+const child = spawn(process.execPath, [serveBin, ...args], { stdio: 'inherit' });
 child.on('exit', code => process.exit(code));
