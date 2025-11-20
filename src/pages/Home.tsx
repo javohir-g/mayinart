@@ -12,11 +12,11 @@ import ProductModal from "../components/product/ProductModal";
 import { useCart } from "../contexts/CartContext";
 
 // Product Card Component with Mouse Position Image Changing
-function ProductCard({ 
-  product, 
-  onClick 
-}: { 
-  product: Product; 
+function ProductCard({
+  product,
+  onClick
+}: {
+  product: Product;
   onClick: () => void;
 }) {
   const [currentImage, setCurrentImage] = useState(product.image);
@@ -24,7 +24,7 @@ function ProductCard({
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current) return;
-    
+
     const rect = cardRef.current.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const width = rect.width;
@@ -181,11 +181,10 @@ export default function Home() {
             <button
               key={index}
               onClick={() => setCurrentSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                index === currentSlide
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentSlide
                   ? "bg-white w-8"
                   : "bg-white/50 hover:bg-white/75"
-              }`}
+                }`}
               aria-label={`Go to slide ${index + 1}`}
             />
           ))}

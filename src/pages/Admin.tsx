@@ -200,11 +200,10 @@ function AdminPanel() {
       {/* Notification */}
       {notification && (
         <div
-          className={`fixed top-24 right-4 z-50 p-4 rounded-xl shadow-lg border ${
-            notification.type === "success"
+          className={`fixed top-24 right-4 z-50 p-4 rounded-xl shadow-lg border ${notification.type === "success"
               ? "bg-green-50 border-green-200 text-green-800"
               : "bg-red-50 border-red-200 text-red-800"
-          } transition-all duration-300 transform`}
+            } transition-all duration-300 transform`}
         >
           <div className="flex items-center gap-2">
             {notification.type === "success" ? (
@@ -253,11 +252,10 @@ function AdminPanel() {
               <button
                 key={key}
                 onClick={() => setActiveTab(key as any)}
-                className={`flex items-center gap-3 px-6 py-3 rounded-xl font-['Outfit'] text-[16px] transition-all ${
-                  activeTab === key
+                className={`flex items-center gap-3 px-6 py-3 rounded-xl font-['Outfit'] text-[16px] transition-all ${activeTab === key
                     ? "bg-white text-black shadow-sm border border-gray-200"
                     : "text-gray-600 hover:text-black hover:bg-white/50"
-                }`}
+                  }`}
               >
                 <span className="text-[18px]">{icon}</span>
                 {label}

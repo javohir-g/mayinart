@@ -189,7 +189,7 @@ const STORAGE_KEYS = {
 // Helper functions for localStorage
 const loadFromStorage = <T>(key: string, defaultValue: T): T => {
   if (typeof window === 'undefined') return defaultValue;
-  
+
   try {
     const stored = localStorage.getItem(key);
     if (stored) {
@@ -203,7 +203,7 @@ const loadFromStorage = <T>(key: string, defaultValue: T): T => {
 
 const saveToStorage = <T>(key: string, data: T): void => {
   if (typeof window === 'undefined') return;
-  
+
   try {
     localStorage.setItem(key, JSON.stringify(data));
   } catch (error) {
